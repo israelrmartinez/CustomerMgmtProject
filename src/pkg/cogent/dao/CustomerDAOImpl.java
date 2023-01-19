@@ -18,16 +18,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 	Scanner sc=new Scanner(System.in);
 	SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
 	Date youngestDob;
-	Date oldestStartDob;
-	
-	public CustomerDAOImpl() {
-		try {
-			this.oldestStartDob = sdformat.parse("1900-01-01");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 	@Override
 	public void create() {
 		if (customers != null) {
@@ -45,16 +35,16 @@ public class CustomerDAOImpl implements CustomerDAO {
 			Customer cust=new Customer();
 			System.out.println("Please enter customer ID:");
 			String cid=sc.next();		
-			System.out.println("Please enter customer name:");
-			String cname=sc.next();
-			System.out.println("Please enter customer email ");
-			String eMail=sc.next();
+//			System.out.println("Please enter customer name:");
+//			String cname=sc.next();
+//			System.out.println("Please enter customer email ");
+//			String eMail=sc.next();
 			System.out.println("Please enter DOB (yyyy-MM-dd)");
 			String cDob = sc.next();
 			
 			cust.setcId(cid);
-			cust.setcName(cname);
-			cust.setcEmail(eMail);
+//			cust.setcName(cname);
+//			cust.setcEmail(eMail);
 			cust.setcDob(cDob);
 			validateMandatoryField(cust);
 			customers[i]=cust;
@@ -179,29 +169,21 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public void findYongestCustomer() {
 		// TODO Auto-generated method stub
 		try {
-			oldestStartDob = sdformat.parse("1900-01-01");
+			youngestDob = sdformat.parse("1900-01-01");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		if (youngestDob == null) {
-			youngestDob = oldestStartDob;
 		}
 		System.out.println("Oldest dob: " + sdformat.format(youngestDob));
 		Customer cust = new Customer();
 		int index = -1;
 		for (int i = 0; i < customers.length; i++) {
-			System.out.println("comparing...");
-			if (youngestDob.compareTo(customers[i].cDobObj) > 0) {
-				System.out.println("later date found");
+			if (customers[i].cDobObj.after(youngestDob)) {
 				cust = customers[i];
 				youngestDob = customers[i].cDobObj;
 			}
 		}
-		System.out.println("Customer ID:"+cust.getcId());
-		System.out.println("Customer  name:"+cust.getcName());
-		System.out.println("Customer e-mail:"+cust.getcEmail());
-		System.out.println("Customer DOB:"+cust.getcDob());
+		this.findCustomerById(cust.getcId());
 	}
 
 }
