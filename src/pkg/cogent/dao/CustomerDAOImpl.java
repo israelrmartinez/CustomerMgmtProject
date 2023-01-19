@@ -18,6 +18,16 @@ public class CustomerDAOImpl implements CustomerDAO {
 	Scanner sc=new Scanner(System.in);
 	SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
 	Date youngestDob;
+	Date oldestStartDob;
+	
+	public CustomerDAOImpl() {
+		try {
+			this.oldestStartDob = sdformat.parse("1900-01-01");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	@Override
 	public void create() {
 		if (customers != null) {
@@ -169,20 +179,29 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public void findYongestCustomer() {
 		// TODO Auto-generated method stub
 		try {
-			youngestDob = sdformat.parse("1900-01-01");
+			oldestStartDob = sdformat.parse("1900-01-01");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		if (youngestDob == null) {
+			youngestDob = oldestStartDob;
 		}
 		System.out.println("Oldest dob: " + sdformat.format(youngestDob));
 		Customer cust = new Customer();
 		int index = -1;
 		for (int i = 0; i < customers.length; i++) {
-			if (customers[i].cDobObj.compareTo(youngestDob) > 0) {
+			System.out.println("comparing...");
+			if (youngestDob.compareTo(customers[i].cDobObj) > 0) {
+				System.out.println("later date found");
 				cust = customers[i];
+				youngestDob = customers[i].cDobObj;
 			}
 		}
-		this.findCustomerById(cust.getcId());
+		System.out.println("Customer ID:"+cust.getcId());
+		System.out.println("Customer  name:"+cust.getcName());
+		System.out.println("Customer e-mail:"+cust.getcEmail());
+		System.out.println("Customer DOB:"+cust.getcDob());
 	}
 
 }
