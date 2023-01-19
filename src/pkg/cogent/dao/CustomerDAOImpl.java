@@ -76,12 +76,14 @@ public class CustomerDAOImpl implements CustomerDAO {
 			System.out.println("Customer  name:"+customers[i].getcName());
 			System.out.println("Customer e-mail:"+customers[i].getcEmail());
 			System.out.println("Customer DOB:"+customers[i].getcDob());
+			System.out.println();
 		}
 	}
 
 	@Override
 	public void update(String customerId) {
 		// TODO Auto-generated method stub
+		System.out.println();
 		Customer cust = new Customer();
 		int index = -1;
 		
@@ -100,7 +102,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 		System.out.println("4-Date of birth");
 		System.out.println("Please enter your choice...");
 		int choice=sc.nextInt();
-
+		System.out.println();
+		
 		switch (choice) {
 		case 1:
 			System.out.println("Please enter the new ID");
@@ -124,6 +127,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 			break;
 		}
 		customers[index] = cust;
+		System.out.println();
 	}
 
 	@Override
@@ -145,10 +149,12 @@ public class CustomerDAOImpl implements CustomerDAO {
 			}
 		}
 		existingCustomers = customers;
+		System.out.println();
 	}
 	@Override
 	public void findCustomerById(String cID) {
 		// TODO Auto-generated method stub
+		System.out.println();
 		Customer cust = new Customer();
 		int index = -1;
 		
@@ -164,6 +170,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		System.out.println("Customer  name:"+cust.getcName());
 		System.out.println("Customer e-mail:"+cust.getcEmail());
 		System.out.println("Customer DOB:"+cust.getcDob());
+		System.out.println();
 	}
 	
 	@Override
@@ -175,7 +182,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Oldest dob: " + sdformat.format(youngestDob));
+		System.out.println();
 		Customer cust = new Customer();
 		int index = -1;
 		for (int i = 0; i < customers.length; i++) {

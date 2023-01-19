@@ -67,7 +67,7 @@ public class Customer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(this.cDobObj);
+		System.out.println();
 	}
 
 }
