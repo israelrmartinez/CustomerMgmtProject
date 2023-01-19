@@ -35,16 +35,16 @@ public class CustomerDAOImpl implements CustomerDAO {
 			Customer cust=new Customer();
 			System.out.println("Please enter customer ID:");
 			String cid=sc.next();		
-//			System.out.println("Please enter customer name:");
-//			String cname=sc.next();
-//			System.out.println("Please enter customer email ");
-//			String eMail=sc.next();
+			System.out.println("Please enter customer name:");
+			String cname=sc.next();
+			System.out.println("Please enter customer email ");
+			String eMail=sc.next();
 			System.out.println("Please enter DOB (yyyy-MM-dd)");
 			String cDob = sc.next();
 			
 			cust.setcId(cid);
-//			cust.setcName(cname);
-//			cust.setcEmail(eMail);
+			cust.setcName(cname);
+			cust.setcEmail(eMail);
 			cust.setcDob(cDob);
 			validateMandatoryField(cust);
 			customers[i]=cust;
@@ -144,6 +144,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 				k++;
 			}
 		}
+		existingCustomers = customers;
 	}
 	@Override
 	public void findCustomerById(String cID) {
